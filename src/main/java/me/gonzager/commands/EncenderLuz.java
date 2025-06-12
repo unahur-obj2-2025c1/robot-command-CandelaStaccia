@@ -4,6 +4,20 @@ import me.gonzager.domain.Habitacion;
 import me.gonzager.domain.Robot;
 
 public class EncenderLuz extends Tarea {
+
+    private Habitacion habitacion;
+
+    public EncenderLuz(Integer duracion, Habitacion habitacion) {
+        super(duracion);
+        this.habitacion = habitacion;
+    }
+
+    @Override
+    public void ejecutar(Robot robot) {
+        robot.reducirBateria(habitacion.getEstaEncendida() ? 1 : 5);
+        duracion = habitacion.getEstaEncendida() ? 25 : 90;
+        habitacion.setEstaEncendida(true);
+    }
     
 
 }
